@@ -62,4 +62,34 @@ super(context, Dbname, null, 1);
         Cursor cur=db.rawQuery("SELECT * FROM "+Tablename+" WHERE "+c2+ "='"+name+"'", null );
         return cur;
     }
+    public boolean updatedata(String id,String rollno,String admno,String clg)
+    {
+        SQLiteDatabase database=this.getWritableDatabase();
+        ContentValues content=new ContentValues();
+        content.put(c3,rollno);
+        content.put(c4,admno);
+        content.put(c5,clg);
+        long status=database.update(Tablename,content,c1 + "=" +id,null);
+        if (status==-1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public boolean deletedata(String id){
+        SQLiteDatabase database=this.getWritableDatabase();
+        long status=database.delete(Tablename,c1+ "=" +id,null);
+        if (status==-1)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    }
 }
